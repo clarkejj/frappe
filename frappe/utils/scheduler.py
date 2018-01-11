@@ -32,7 +32,7 @@ def start_scheduler():
 	'''Run enqueue_events_for_all_sites every 2 minutes (default).
 	Specify scheduler_interval in seconds in common_site_config.json'''
 
-	interval = frappe.get_conf().scheduler_interval or 240
+	interval = int(frappe.get_conf().scheduler_interval) or 240
 	schedule.every(interval).seconds.do(enqueue_events_for_all_sites)
 
 	while True:
